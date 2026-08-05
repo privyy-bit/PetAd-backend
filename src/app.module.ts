@@ -18,7 +18,6 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 
 import { LoggingInterceptor } from './logging/logging.interceptor';
 import { JobsModule } from './jobs/jobs.module';
-import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis';
 
 
 @Module({
@@ -30,18 +29,6 @@ import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis'
         limit: 100,
       },
     ]),
-         
-    
-// To be used only when limits needs to be persisted upon restart
-
-    // ThrottlerModule.forRoot({
-    //   throttlers: [{ ttl: 60000, limit: 100 }],
-    //   storage: new ThrottlerStorageRedisService({
-    //     host: 'redis',  // Docker service name
-    //     port: 6379,
-    //   }),
-    // }),
-    
     PrismaModule,
     PetsModule,
     AdoptionModule,
