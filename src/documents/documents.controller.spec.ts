@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DocumentsController } from './documents.controller';
 import { DocumentsService } from './documents.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { PrismaService } from '../prisma/prisma.service';
 
 describe('DocumentsController', () => {
   let controller: DocumentsController;
@@ -15,6 +16,8 @@ describe('DocumentsController', () => {
     deleteDocument: jest.fn(),
   };
 
+  const mockPrismaService = {};
+
   beforeEach(async () => {
     jest.clearAllMocks();
     const module: TestingModule = await Test.createTestingModule({
@@ -22,8 +25,8 @@ describe('DocumentsController', () => {
       providers: [
         { provide: DocumentsService, useValue: mockDocumentsService },
         {
-          provide: 'PrismaService',
-          useValue: {},
+          provide: PrismaService,
+          useValue: mockPrismaService,
         },
       ],
     })
