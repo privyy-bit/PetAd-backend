@@ -21,6 +21,10 @@ describe('DocumentsController', () => {
       controllers: [DocumentsController],
       providers: [
         { provide: DocumentsService, useValue: mockDocumentsService },
+        {
+          provide: 'PrismaService',
+          useValue: {},
+        },
       ],
     })
       .overrideGuard(JwtAuthGuard)
